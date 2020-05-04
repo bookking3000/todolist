@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="form-group">
+        <h1>Registrieren</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    </div>
+
+
+    <button class="mt-3" type="submit">Registrieren!</button>
+{{ form_end(form) }}
+{% endblock %}
