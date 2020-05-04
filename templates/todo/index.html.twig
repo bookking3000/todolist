@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Todo index{% endblock %}
+
+{% block body %}
+    <h1>Übersicht aller Todos</h1>
+
+    <table class="table bg-light">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Erstellt am</th>
+                <th>Fällig am</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todos %}
+            <tr>
+                <td>{{ todo.Name }}</td>
+                <td>{{ todo.Description }}</td>
+                <td>{{ todo.CreationDate ? todo.CreationDate|date('d.m.Y H:i') : '' }}</td>
+                <td>{{ todo.DueDate ? todo.DueDate|date('d.m.Y H:i') : '' }}</td>
+                <td>
+                    <a href="{{ path('todo_show', {'id': todo.id}) }}"><i class="fas fa-eye"></i>Anzeigen</a>
+                    <a href="{{ path('todo_edit', {'id': todo.id}) }}"><i class="fas fa-edit"></i>Bearbeiten</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Keine Todos vorhanden</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('todo_new') }}">Neues Todo</a>
+{% endblock %}
