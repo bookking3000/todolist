@@ -49,6 +49,11 @@ class Todo
      */
     private $Contributors;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $CompletionDate;
+
     public function __construct()
     {
         $this->Contributors = new ArrayCollection();
@@ -141,6 +146,18 @@ class Todo
         if ($this->Contributors->contains($contributor)) {
             $this->Contributors->removeElement($contributor);
         }
+
+        return $this;
+    }
+
+    public function getCompletionDate(): ?\DateTimeInterface
+    {
+        return $this->CompletionDate;
+    }
+
+    public function setCompletionDate(?\DateTimeInterface $CompletionDate): self
+    {
+        $this->CompletionDate = $CompletionDate;
 
         return $this;
     }
