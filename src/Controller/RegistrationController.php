@@ -29,6 +29,7 @@ class RegistrationController extends AbstractController
 
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+
             $user->setIsValidated(false);
             $user->setRegistrationDate(new \DateTime());
 
