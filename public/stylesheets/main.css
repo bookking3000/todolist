@@ -32,7 +32,6 @@ header a, header a:visited {
     height:100%;
     display:block;
 }
-
 .stars {
     background-image:url("../images/triangles_bg.png");
     z-index:1;

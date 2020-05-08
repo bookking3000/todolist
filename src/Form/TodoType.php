@@ -30,11 +30,8 @@ class TodoType extends AbstractType
             ->add('DueDate', DateTimeType::class, array(
                 'required' => true,
                 'label' => 'Fälligkeitsdatum',
-                'translation_domain' => 'AppBundle',
                 'attr' => array(
-                    'class' => 'form-control input-inline datetimepicker',
-                    'data-provide' => 'datepicker',
-                    'data-format' => 'dd-mm-yyyy HH:ii',
+                    'class' => 'form-control',
                 ),
             ))
             ->add('Contributors',null, $options =  [
@@ -48,6 +45,9 @@ class TodoType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Todo::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }
