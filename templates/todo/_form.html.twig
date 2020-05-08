@@ -1,4 +1,5 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn mt-3">{{ button_label|default('Save') }}</button>
+    <button class="btn mt-3">{{ button_label|default('Speichern') }}</button>
+    <a class="btn mt-3 btn-secondary"  href="{{ path('todo_index') }}">Zurück zur Übersicht</a>
 {{ form_end(form) }}

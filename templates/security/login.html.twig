@@ -25,15 +25,14 @@
                value="{{ csrf_token('authenticate') }}"
         >
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me">E-Mail merken
-            </label>
+        <div class="mb-3">
+           <!--suppress HtmlUnknownTarget -->
+            <a href="/register">Hier registrieren</a>
         </div>
 
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
+        <button class="btn btn-primary" type="submit">
+            Einloggen
         </button>
     </form>
 {% endblock %}

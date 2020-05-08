@@ -21,32 +21,16 @@ class TodoRepository extends ServiceEntityRepository
     }
 
    /**
-    * @return Todo[] Returns an array of Todo objects
+    * @return Todo[] Returns an array of owned Todo objects
     */
-    public function findByExampleField($value)
+    public function findByOwner($value)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
+            ->andWhere('t.Owner = :val')
             ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('t.DueDate', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-
-
-
-    public function findOneBySomeField($value): ?Todo
-    {
-        try {
-            return $this->createQueryBuilder('t')
-                ->andWhere('t.exampleField = :val')
-                ->setParameter('val', $value)
-                ->getQuery()
-                ->getOneOrNullResult();
-        } catch (NonUniqueResultException $e) {
-        }
-    }
-
 }

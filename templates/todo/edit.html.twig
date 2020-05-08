@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Todo{% endblock %}
+{% block title %}Todo bearbeiten{% endblock %}
 
 {% block body %}
-    <h1>Edit Todo</h1>
+    <h1>Todo bearbeiten</h1>
 
-    {{ include('todo/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="row">
+        <div class="col">
+            {{ include('todo/_form.html.twig') }}
+            {{ include('todo/_delete_form.html.twig') }}
+        </div>
+    </div>
 
-    <a href="{{ path('todo_index') }}">back to list</a>
-
-    {{ include('todo/_delete_form.html.twig') }}
 {% endblock %}

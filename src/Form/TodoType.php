@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Todo;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,10 +23,20 @@ class TodoType extends AbstractType
                 'label' => 'Beschreibung',
             ] )
 
-            ->add('DueDate',null, $options =  [
+            /*->add('DueDate',DateTimeType::class, $options =  [
                 'attr'   => array('class' => 'form-control'),
                 'label' => 'Fälligkeitsdatum',
-            ])
+            ])*/
+            ->add('DueDate', DateTimeType::class, array(
+                'required' => true,
+                'label' => 'Fälligkeitsdatum',
+                'translation_domain' => 'AppBundle',
+                'attr' => array(
+                    'class' => 'form-control input-inline datetimepicker',
+                    'data-provide' => 'datepicker',
+                    'data-format' => 'dd-mm-yyyy HH:ii',
+                ),
+            ))
             ->add('Contributors',null, $options =  [
                 'attr'   => array('class' => 'form-control'),
                 'label' => 'Teilnehmer',

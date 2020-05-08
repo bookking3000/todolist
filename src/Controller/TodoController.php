@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Todo;
 use App\Form\TodoType;
 use App\Repository\TodoRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,16 +18,21 @@ class TodoController extends AbstractController
 {
     /**
      * @Route("/", name="todo_index", methods={"GET"})
+     * @param TodoRepository $todoRepository
+     * @return Response
      */
     public function index(TodoRepository $todoRepository): Response
     {
+        $user=$this->getUser();
         return $this->render('todo/index.html.twig', [
-            'todos' => $todoRepository->findAll(),
+            'todos' => $todoRepository->findByOwner($user->getId()),
         ]);
     }
 
     /**
      * @Route("/new", name="todo_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -36,7 +42,9 @@ class TodoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $todo->setCreationDate(new \DateTime());
+            $todo->setCreationDate(new DateTime());
+
+            /** @noinspection PhpParamsInspection */
             $todo->setOwner($this->getUser());
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -54,6 +62,8 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}", name="todo_show", methods={"GET"})
+     * @param Todo $todo
+     * @return Response
      */
     public function show(Todo $todo): Response
     {
@@ -64,6 +74,9 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="todo_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Todo $todo
+     * @return Response
      */
     public function edit(Request $request, Todo $todo): Response
     {
@@ -84,6 +97,9 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}", name="todo_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Todo $todo
+     * @return Response
      */
     public function delete(Request $request, Todo $todo): Response
     {
