@@ -1,11 +1,11 @@
-#TodoList
+# TodoList
 Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony Framework in der Version 4.4
 
-##Features
+## Features
 - Account-System
 - Erstellen, Ändern und Löschen von ToDos
 
-###WIP
+### WIP
 [ ] Verbesserung der Formulare
 
 [ ] Archivierungs Funktion für ToDos
@@ -19,7 +19,7 @@ Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony 
 [ ] Account-Management
 - Profil bearbeiten / löschen
 
-##Verwendete Frameworks etc.
+## Verwendete Frameworks etc.
 [Bootstrap v4.4.4](https://getbootstrap.com/)
 
 [Symfony v4.4.14](https://symfony.com/doc/current/index.html#gsc.tab=0)
