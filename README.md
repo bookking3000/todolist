@@ -6,17 +6,17 @@ Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony 
 - Erstellen, Ändern und Löschen von ToDos
 
 ### WIP
-[ ] Verbesserung der Formulare
+- [ ] Verbesserung der Formulare
 
-[ ] Archivierungs Funktion für ToDos
+- [ ] Archivierungs Funktion für ToDos
 
-[ ] Tags/Kategorien für ToDos
+- [ ] Tags/Kategorien für ToDos
 
-[ ] Notifications
+- [ ] Notifications
 
-[ ] E-Mail Verification
+- [ ] E-Mail Verification
 
-[ ] Account-Management
+- [ ] Account-Management
 - Profil bearbeiten / löschen
 
 ## Verwendete Frameworks etc.
