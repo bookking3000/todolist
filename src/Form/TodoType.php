@@ -41,9 +41,11 @@ class TodoType extends AbstractType
             ))
             ->add('Contributors', EntityType::class, $options = [
                 'class' => User::class,
-                'choice_label' => 'username',
+                'choice_label' => function ($user) {
+                    return $user->getDisplayName();
+                },
+                'placeholder' => false,
                 'multiple' => true,
-                'expanded' => true,
                 'query_builder' =>
                     function (UserRepository $er) use ($username) {
                         return $er->createQueryBuilder('u')

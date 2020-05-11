@@ -249,6 +249,11 @@ class User implements UserInterface
         $this->plainPassword = null;
     }
 
+    public function getDisplayName()
+    {
+        return $this->getUsername().' ('.$this->getEmail().')';
+    }
+
     public function __toString()
     {
         return $this->getUsername();
