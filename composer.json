@@ -1,4 +1,6 @@
 {
+    "name": "ToDoList",
+    "description": "A simple ToDoList",
     "type": "project",
     "license": "proprietary",
     "require": {

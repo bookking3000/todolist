@@ -29,30 +29,28 @@ class TodoType extends AbstractType
                 'attr' => array('class' => 'form-control'),
                 'label' => 'Beschreibung',
             ])
-            /*->add('DueDate',DateTimeType::class, $options =  [
-                'attr'   => array('class' => 'form-control'),
-                'label' => 'Fälligkeitsdatum',
-            ])*/
             ->add('DueDate', DateTimeType::class, array(
                 'required' => true,
                 'label' => 'Fälligkeitsdatum',
-                'attr' => array(
-                    'class' => 'form-control',
-                ),
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control input-inline datetimepicker',
+                    'data-provide' => 'datetimepicker',
+                    'html5' => false,
+                ],
             ))
             ->add('Contributors', EntityType::class, $options = [
                 'class' => User::class,
                 'choice_label' => 'username',
                 'multiple' => true,
                 'expanded' => true,
-                'query_builder' => function (UserRepository $er) use ($username) {
-                    return $er->createQueryBuilder('u')
-                        ->where('u.Username != :val')
-                        ->setParameter('val', $username)
-                        ->orderBy('u.Username', 'ASC')
-                        ;
-
-                },
+                'query_builder' =>
+                    function (UserRepository $er) use ($username) {
+                        return $er->createQueryBuilder('u')
+                            ->where('u.Username != :val')
+                            ->setParameter('val', $username)
+                            ->orderBy('u.Username', 'ASC');
+                    },
                 'attr' => array('class' => 'form-control'),
                 'label' => 'Teilnehmer',
             ]);
