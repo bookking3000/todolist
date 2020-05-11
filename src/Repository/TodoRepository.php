@@ -33,4 +33,18 @@ class TodoRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * @return Todo[] Returns an array of owned Todo objects
+     */
+    public function findByContributor($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.Contributors = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.DueDate', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

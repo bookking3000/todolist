@@ -3,11 +3,10 @@
 {% block title %}TodoList{% endblock %}
 
 {% block body %}
-    <div class="jumbotron opacity-4">
-        <h1 class="display-4">Deine ToDos</h1>
-        <p class="lead">Hier siehst du deine Todos, und kannst diese verwalten.</p>
+    <div class="jumbotron">
+        <h1 class="display-4">ToDos in Zusammenarbeit</h1>
+        <p class="lead">Hier siehst du die Todos von anderen, in welchen du markiert wurdest.</p>
     </div>
-
     {% for todo in todos %}
         <div class="card text-center mt-3 mb-4">
             <div class="card-header">
@@ -21,8 +20,6 @@
                     Fällig am {{ todo.DueDate ? todo.DueDate|date('d.m.Y') : '' }} um {{ todo.DueDate ? todo.DueDate|date('H.i') : '' }} Uhr
                 </h6>
                 <p class="card-text">{{ todo.Description }}</p>
-                <a class="mr-1" href="{{ path('todo_show', {'id': todo.id}) }}"><i class="fas fa-eye"></i>Anzeigen</a>
-                <a class="ml-1" href="{{ path('todo_edit', {'id': todo.id}) }}"><i class="fas fa-edit"></i>Bearbeiten</a>
             </div>
             <div class="card-footer text-muted">
                 Erstellt: {{ todo.CreationDate ? todo.CreationDate|date('d.m.Y H:i') : '' }}
@@ -34,16 +31,12 @@
                 Nichts zu finden
             </div>
             <div class="card-body">
-                <h5 class="card-title">Keine ToDos vorhanden</h5>
-                <p class="card-text">Du hast noch keine ToDos angelegt.</p>
-                <a class="btn btn-primary" href="{{ path('todo_new') }}">Neues Todo</a>
+                <h5 class="card-title">Keine ToDos vorhanden </h5>
+                <p class="card-text">Es scheint dich niemand in seinen Todos markiert zu haben.</p>
+                <a href="/todo/own" class="btn btn-primary">Zu deinen ToDos</a>
             </div>
             <div class="card-footer text-muted">
-                2 days ago
             </div>
         </div>
     {% endfor %}
-
-
-    <a class="btn btn-primary" href="{{ path('todo_new') }}">Neues Todo</a>
 {% endblock %}

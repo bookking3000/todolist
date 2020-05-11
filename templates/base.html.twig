@@ -17,12 +17,12 @@
             <script src="https://kit.fontawesome.com/97e5230c04.js" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
-    <div class="stars"></div>
     <body>
     {{ include('navbar.html.twig') }}
     <div class="container-fluid">
-        <div class="container mt-5">
-            {% block body %}{% endblock %}
+        <div class="container mt-5 mb-5 p-4">
+            {% block body %}
+            {% endblock %}
         </div>
     </div>
 
