@@ -18,11 +18,20 @@
                     {{ todo.Name }}
                 </h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                    Fällig am {{ todo.DueDate ? todo.DueDate|date('d.m.Y') : '' }} um {{ todo.DueDate ? todo.DueDate|date('H.i') : '' }} Uhr
+                    Fällig am {{ todo.DueDate ? todo.DueDate|date('d.m.Y') : '' }}
+                    um {{ todo.DueDate ? todo.DueDate|date('H.i') : '' }} Uhr
                 </h6>
                 <p class="card-text">{{ todo.Description }}</p>
                 <a class="mr-1" href="{{ path('todo_show', {'id': todo.id}) }}"><i class="fas fa-eye"></i>Anzeigen</a>
-                <a class="ml-1" href="{{ path('todo_edit', {'id': todo.id}) }}"><i class="fas fa-edit"></i>Bearbeiten</a>
+                <a class="ml-1" href="{{ path('todo_edit', {'id': todo.id}) }}"><i
+                            class="fas fa-edit"></i>Bearbeiten</a>
+                <br><br>
+                {{ todo.Contributors|length > 0 ? '<p class="mb-0">Mitarbeiter</p>' : '' }}
+                <ul class="list-group">
+                    {% for Contributors in todo.Contributors %}
+                        <li class="list-group-item"> {{ Contributors.DisplayName ? Contributors.DisplayName : 'Error' }}</li>
+                    {% endfor %}
+                </ul>
             </div>
             <div class="card-footer text-muted">
                 Erstellt: {{ todo.CreationDate ? todo.CreationDate|date('d.m.Y H:i') : '' }}
