@@ -17,7 +17,8 @@ Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony 
 - [ ] E-Mail Verification
 
 - [ ] Account-Management
-- Profil bearbeiten / löschen
+
+- [ ] Profil bearbeiten / löschen
 
 ## Verwendete Frameworks etc.
 [Bootstrap v4.4.4](https://getbootstrap.com/)
