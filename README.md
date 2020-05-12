@@ -10,7 +10,7 @@ Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony 
 
 - [ ] Archivierungs Funktion für ToDos
 
-- [ ] Tags/Kategorien für ToDos
+- [x] Tags/Kategorien für ToDos
 
 - [ ] Notifications
 
