@@ -16,16 +16,16 @@
                 <td>{{ todo.Name }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ todo.Name }}</td>
+                <th>Beschreibung</th>
+                <td>{{ todo.Description }}</td>
             </tr>
             <tr>
                 <th>Erstellungsdatum</th>
-                <td>{{ todo.CreationDate ? todo.CreationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ todo.CreationDate ? todo.CreationDate|date('d.m.Y H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>Fälligkeitsdatum</th>
-                <td>{{ todo.DueDate ? todo.DueDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ todo.DueDate ? todo.DueDate|date('d.m.Y H:i') : '' }}</td>
             </tr>
         </tbody>
     </table>

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TodoList - Kategorien{% endblock %}
+
+{% block body %}
+    <div class="jumbotron opacity-4">
+        <h1 class="display-4">Deine Kategorien</h1>
+        <p class="lead">Hier siehst du deine Kategorien, und kannst diese verwalten.</p>
+    </div>
+            <div class="card text-center mt-3 mb-4">
+                <div class="card-header">
+                    Kategorien
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Deine Kategorien
+                    </h5>
+                    <br>
+                    <ul class="list-group">
+                        {% if todo_categories|length > 0 == true %}
+                            {% for todo_category in todo_categories %}
+                                <li class="list-group-item">
+                                    {{ todo_category.name }}<span class="mr-2 ml-2">|</span>
+                                    <a href="{{ path('todo_category_show', {'id': todo_category.id}) }}"><i class="fas fa-eye"></i>Anzeigen</a>
+                                    <a href="{{ path('todo_category_edit', {'id': todo_category.id}) }}"><i class="fas fa-edit"></i>Bearbeiten</a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">
+                               Du hast noch keine Kategorien
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+
+    <a class="btn btn-primary" href="{{ path('todo_category_new') }}">Neue Kategorie</a>
+{% endblock %}

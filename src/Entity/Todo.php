@@ -54,9 +54,15 @@ class Todo
      */
     private $CompletionDate;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=TodoCategory::class, inversedBy="todos")
+     */
+    private $Category;
+
     public function __construct()
     {
         $this->Contributors = new ArrayCollection();
+        $this->Category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,6 +164,32 @@ class Todo
     public function setCompletionDate(?\DateTimeInterface $CompletionDate): self
     {
         $this->CompletionDate = $CompletionDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TodoCategory[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->Category;
+    }
+
+    public function addCategory(TodoCategory $category): self
+    {
+        if (!$this->Category->contains($category)) {
+            $this->Category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(TodoCategory $category): self
+    {
+        if ($this->Category->contains($category)) {
+            $this->Category->removeElement($category);
+        }
 
         return $this;
     }

@@ -79,10 +79,6 @@ jobs:
         run: |
           php bin/console -V
 
-      ## —— Coding standards ✨ ————————————————————————————————————————————————
-      - name: Coding standards checks (php_codesniffer + PHPStan)
-        run: make cs
-
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
       - name: Run functionnal and unit tests
         run: |

@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Todo;
+use App\Entity\TodoCategory;
 use App\Entity\User;
+use App\Repository\TodoCategoryRepository;
 use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -55,7 +57,25 @@ class TodoType extends AbstractType
                     },
                 'attr' => array('class' => 'form-control'),
                 'label' => 'Teilnehmer',
-            ]);
+            ])
+            ->add('Category', EntityType::class, $options = [
+                'class' => TodoCategory::class,
+                'choice_label' => function ($category) {
+                    return $category->getName();
+                },
+                'placeholder' => false,
+                'multiple' => true,
+                'query_builder' =>
+                    function (TodoCategoryRepository $er) use ($username) {
+                        return $er->createQueryBuilder('u')
+                            ->where('u.user != :val')
+                            ->setParameter('val', $username)
+                            ->orderBy('u.user', 'ASC');
+                    },
+                'attr' => array('class' => 'form-control'),
+                'label' => 'Kategorien',
+            ]);;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

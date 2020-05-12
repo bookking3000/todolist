@@ -72,11 +72,17 @@ class User implements UserInterface
      */
     private $plainPassword;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TodoCategory::class, mappedBy="user")
+     */
+    private $Categories;
+
 
     public function __construct()
     {
         $this->ownedTodos = new ArrayCollection();
         $this->todosContributingTo = new ArrayCollection();
+        $this->Categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -257,6 +263,37 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getUsername();
+    }
+
+    /**
+     * @return Collection|TodoCategory[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->Categories;
+    }
+
+    public function addCategory(TodoCategory $category): self
+    {
+        if (!$this->Categories->contains($category)) {
+            $this->Categories[] = $category;
+            $category->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(TodoCategory $category): self
+    {
+        if ($this->Categories->contains($category)) {
+            $this->Categories->removeElement($category);
+            // set the owning side to null (unless already changed)
+            if ($category->getUser() === $this) {
+                $category->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }
