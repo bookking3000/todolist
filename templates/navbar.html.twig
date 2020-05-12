@@ -1,16 +1,34 @@
 <header>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <a class="navbar-brand" href="#">ToDoList</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href=/random/number/>Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/todo/own">Deine ToDos</a>
-                <a class="nav-item nav-link" href="/todo/contributingTo">Andere ToDos</a>
-                <a class="nav-item nav-link" href="/todo/category">Kategorien</a>
-                <a class="nav-item nav-link" href="/logout">Abmelden</a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href=/random/number/>Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ToDos</a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/todo/own/">Deine ToDos</a>
+                            <a class="dropdown-item" href="/todo/own/archived">Archivierte ToDos</a>
+                            <a class="dropdown-item" href="/todo/contributingTo">Andere ToDos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="/todo/category">Kategorien</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="/logout">Abmelden</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

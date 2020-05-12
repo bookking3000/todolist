@@ -59,6 +59,11 @@ class Todo
      */
     private $Category;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isArchived;
+
     public function __construct()
     {
         $this->Contributors = new ArrayCollection();
@@ -190,6 +195,18 @@ class Todo
         if ($this->Category->contains($category)) {
             $this->Category->removeElement($category);
         }
+
+        return $this;
+    }
+
+    public function getIsArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): self
+    {
+        $this->isArchived = $isArchived;
 
         return $this;
     }

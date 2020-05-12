@@ -27,11 +27,27 @@ class TodoRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.Owner = :val')
+            ->andWhere('t.isArchived = false')
             ->setParameter('val', $value)
             ->orderBy('t.DueDate', 'ASC')
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @return Todo[] Returns an array of owned Todo objects which are archived
+     */
+    public function findArchivedByOwner($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.Owner = :val')
+            ->andWhere('t.isArchived = true')
+            ->setParameter('val', $value)
+            ->orderBy('t.DueDate', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**

@@ -4,8 +4,8 @@
 
 {% block body %}
     <div class="jumbotron opacity-4">
-        <h1 class="display-4">Deine ToDos</h1>
-        <p class="lead">Hier siehst du deine Todos, und kannst diese verwalten.</p>
+        <h1 class="display-4">Archiv</h1>
+        <p class="lead">Hier siehst du deine archivierten Todos, und kannst diese verwalten.</p>
     </div>
 
     {% for todo in todos %}
@@ -30,7 +30,7 @@
                             class="fas fa-edit"></i>Bearbeiten</a>
 
                 <a class="ml-1" href="{{ path('todo_archive', {'id': todo.id}) }}"><i
-                            class="fas fa-archive"></i>Archivieren</a>
+                            class="fas fa-archive"></i>Archivierung aufheben</a>
 
                 <br><br>
                 {{ todo.Contributors|length > 0 ? '<p class="mb-0">Mitarbeiter</p>' : '' }}

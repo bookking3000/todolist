@@ -31,6 +31,19 @@ class TodoController extends AbstractController
     }
 
     /**
+     * @Route("/own/archived", name="todo_archived_index", methods={"GET"})
+     * @param TodoRepository $todoRepository
+     * @return Response
+     */
+    public function archived(TodoRepository $todoRepository): Response
+    {
+        $user = $this->getUser();
+        return $this->render('archived/index.html.twig', [
+            'todos' => $todoRepository->findArchivedByOwner($user->getId()),
+        ]);
+    }
+
+    /**
      * @Route("/contributingTo", name="todo_contributng", methods={"GET"})
      * @param TodoRepository $todoRepository
      * @return Response
@@ -62,6 +75,7 @@ class TodoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $todo->setCreationDate(new DateTime());
+            $todo->setIsArchived(false);
 
             /** @noinspection PhpParamsInspection */
             $todo->setOwner($this->getUser());
@@ -120,6 +134,25 @@ class TodoController extends AbstractController
             'todo' => $todo,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/archive", name="todo_archive", methods={"GET","POST"})
+     * @param Request $request
+     * @param Todo $todo
+     * @return Response
+     */
+    public function archive(Request $request, Todo $todo): Response
+    {
+        if($todo->getIsArchived() == false){
+            $todo->setIsArchived(true);
+        } else {
+            $todo->setIsArchived(false);
+        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->flush();
+
+        return $this->redirectToRoute('todo_index');
     }
 
     /**
