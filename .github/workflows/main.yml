@@ -82,5 +82,4 @@ jobs:
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
       - name: Run functionnal and unit tests
         run: |
-          cp phpunit.xml.ci phpunit.xml
-          make test
+          php bin/phpunit
