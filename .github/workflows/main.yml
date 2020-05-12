@@ -78,18 +78,12 @@ jobs:
       - name: Check the Symfony console
         run: |
           php bin/console -V
-          php bin/console strangebuzz:version
 
       ## —— Coding standards ✨ ————————————————————————————————————————————————
       - name: Coding standards checks (php_codesniffer + PHPStan)
         run: make cs
 
       ## —— Tests ✅ ———————————————————————————————————————————————————————————
-      - name: Load Doctrine fixtures and populate the Elasticsearch indexes
-        run: |
-          make load-fixtures
-          make populate
-
       - name: Run functionnal and unit tests
         run: |
           cp phpunit.xml.ci phpunit.xml
