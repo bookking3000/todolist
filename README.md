@@ -1,7 +1,7 @@
 # TodoList
 Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony Framework in der Version 4.4
 
-#Setup
+# Setup
 - Make sure to have mailcatcher running on smtp://localhost:1025 or reconfigure the mailer settings in the .env-file, to get the Validation Emails
 
 ## Features
