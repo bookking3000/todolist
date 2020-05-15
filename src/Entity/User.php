@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -14,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields="Email", message="Ein Konto mit dieser E-Mail-Adresse ist bereits registriert.")
  * @UniqueEntity(fields="Username", message="Der gewählte Benutzername wurde bereits vergeben.")
  */
-class User implements UserInterface
+class User implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Id()
@@ -37,7 +38,6 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
-
      */
     private $Email;
 
@@ -76,6 +76,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=TodoCategory::class, mappedBy="user")
      */
     private $Categories;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
 
     public function __construct()
@@ -234,14 +239,6 @@ class User implements UserInterface
     /**
      * @inheritDoc
      */
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
@@ -257,7 +254,7 @@ class User implements UserInterface
 
     public function getDisplayName()
     {
-        return $this->getUsername().' ('.$this->getEmail().')';
+        return $this->getUsername() . ' (' . $this->getEmail() . ')';
     }
 
     public function __toString()
@@ -296,4 +293,40 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        // guarantee every user at least has ROLE_USER
+        $this->roles[] = 'ROLE_USER';
+
+        return array_unique($this->roles);
+    }
+
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
+    }
+
+
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($this->getId() == $user->getId())
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 }

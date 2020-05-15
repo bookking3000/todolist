@@ -1,0 +1,10 @@
+<h3>Du hast dich registriert!</h3>
+
+Hi {{ name }}!<br>
+Du hast dich erfolgreich auf <a href="{{  url('user_registration') }}">ToDoList</a> registriert.<br>
+Um deinen Account zu aktivieren klicke bitte auf den folgenden Link:
+<a href="{{ url('user_validation',{id: userID }) }}">Account aktivieren (Klick!)</a>.
+<br><br>
+{# example, assuming you have a route named "login" #}
+Um dich einzuloggen, folge diesem Link: <a href="{{ url('app_login') }}">klick!</a>.
+

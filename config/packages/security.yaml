@@ -35,4 +35,4 @@ security:
     #ACL
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/todo, roles: ROLE_USER }
+        - { path: ^/todo, roles: ROLE_VALIDATED_USER }

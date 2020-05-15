@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>Willkommen auf TodoList</h1>
+    <p>Du hast einen neuen Registrierungs-Link per E-Mail bekommen.</p>
+    <p>Bitte klicke auf diesen um deinen Account zu validieren, sodass du diesen in vollem Umfang nutzen kannst.</p>
+    <a href="{{ path('user_validation_resend_mail', {id: userID}) }}">E-Mail nochmals senden</a>
+{% endblock %}
+

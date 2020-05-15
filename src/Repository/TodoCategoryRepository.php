@@ -19,32 +19,14 @@ class TodoCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, TodoCategory::class);
     }
 
-    // /**
-    //  * @return TodoCategory[] Returns an array of TodoCategory objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByOwner($value)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
+            ->andWhere('t.user = :val')
             ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('t.createdAt', 'ASC')
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?TodoCategory
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TodoCategory;
 use App\Form\TodoCategoryType;
 use App\Repository\TodoCategoryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class TodoCategoryController extends AbstractController
     public function index(TodoCategoryRepository $todoCategoryRepository): Response
     {
         return $this->render('todo_category/index.html.twig', [
-            'todo_categories' => $todoCategoryRepository->findAll(),
+            'todo_categories' => $todoCategoryRepository->findByOwner($this->getUser()),
         ]);
     }
 
