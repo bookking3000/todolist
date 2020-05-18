@@ -9,11 +9,13 @@
         {% endif %}
 
         {% if app.user %}
+            <h1 class="h3 mb-3 font-weight-normal">Du bist bereits eingeloggt.</h1>
             <div class="mb-3">
-                Du bist eingeloggt als {{ app.user.username }}, <a href="{{ path('app_logout') }}">Ausloggen</a>
+                Du bist bereits eingeloggt als {{ app.user.username }}, <a href="{{ path('app_logout') }}">Ausloggen</a>
             </div>
         {% endif %}
 
+        {% if not app.user %}
         <h1 class="h3 mb-3 font-weight-normal">Login</h1>
         <label for="inputEmail"> E-Mail</label>
         <input type="email" value="{{ last_username }}" name="Email" id="inputEmail" class="form-control" required
@@ -33,5 +35,7 @@
         <button class="btn btn-primary" type="submit">
             Einloggen
         </button>
+        {% endif %}
+
     </form>
 {% endblock %}

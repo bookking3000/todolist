@@ -9,7 +9,7 @@ Webanwendung um Todos zu erstellen und zu verwalten, entwickelt mit dem Symfony 
 - Erstellen, Ändern und Löschen von ToDos
 
 ### WIP
-- [ ] Verbesserung der Formulare
+- [x] Verbesserung der Formular-Validierung
 
 - [x] Archivierungs Funktion für ToDos
 
