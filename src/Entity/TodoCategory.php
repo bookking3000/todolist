@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TodoCategoryRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -70,24 +71,24 @@ class TodoCategory
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getEditedAt(): ?\DateTimeInterface
+    public function getEditedAt(): ?DateTimeInterface
     {
         return $this->editedAt;
     }
 
-    public function setEditedAt(?\DateTimeInterface $editedAt): self
+    public function setEditedAt(?DateTimeInterface $editedAt): self
     {
         $this->editedAt = $editedAt;
 

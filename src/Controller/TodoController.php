@@ -25,9 +25,12 @@ class TodoController extends AbstractController
      */
     public function index(TodoRepository $todoRepository): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
+        $id =$user->getId();
+
         return $this->render('todo/index.html.twig', [
-            'todos' => $todoRepository->findByOwner($user->getId()),
+            'todos' => $todoRepository->findByOwner($id),
         ]);
     }
 
@@ -38,18 +41,20 @@ class TodoController extends AbstractController
      */
     public function archived(TodoRepository $todoRepository): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
+        $id =$user->getId();
+
         return $this->render('archived/index.html.twig', [
-            'todos' => $todoRepository->findArchivedByOwner($user->getId()),
+            'todos' => $todoRepository->findArchivedByOwner($id),
         ]);
     }
 
     /**
      * @Route("/contributingTo", name="todo_contributng", methods={"GET"})
-     * @param TodoRepository $todoRepository
      * @return Response
      */
-    public function contributingTo(TodoRepository $todoRepository): Response
+    public function contributingTo(): Response
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -139,11 +144,10 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}/archive", name="todo_archive", methods={"GET","POST"})
-     * @param Request $request
      * @param Todo $todo
      * @return Response
      */
-    public function archive(Request $request, Todo $todo): Response
+    public function archive(Todo $todo): Response
     {
         if($todo->getIsArchived() == false){
             $todo->setIsArchived(true);

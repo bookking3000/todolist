@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Form\UserType;
 use App\Entity\User;
+use DateTime;
 use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +20,7 @@ class RegistrationController extends AbstractController
      * @Route("/register", name="user_registration")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param Swift_Mailer $mailer
      * @return RedirectResponse|Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, Swift_Mailer $mailer)
@@ -32,7 +35,7 @@ class RegistrationController extends AbstractController
             $user->setPassword($password);
 
             $user->setIsValidated(false);
-            $user->setRegistrationDate(new \DateTime());
+            $user->setRegistrationDate(new DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -55,7 +58,7 @@ class RegistrationController extends AbstractController
      */
     public function sendRegistrationMail(Swift_Mailer $mailer, $user)
     {
-        $message = (new \Swift_Message('Registrierung auf TodoList'))
+        $message = (new Swift_Message('Registrierung auf TodoList'))
             ->setFrom('todolist@localhost')
             ->setTo($user->getEmail())
             ->setBody(

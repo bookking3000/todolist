@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\TodoCategory;
 use App\Form\TodoCategoryType;
 use App\Repository\TodoCategoryRepository;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,8 @@ class TodoCategoryController extends AbstractController
 {
     /**
      * @Route("/", name="todo_category_index", methods={"GET"})
+     * @param TodoCategoryRepository $todoCategoryRepository
+     * @return Response
      */
     public function index(TodoCategoryRepository $todoCategoryRepository): Response
     {
@@ -28,6 +31,8 @@ class TodoCategoryController extends AbstractController
 
     /**
      * @Route("/new", name="todo_category_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -35,7 +40,8 @@ class TodoCategoryController extends AbstractController
         $form = $this->createForm(TodoCategoryType::class, $todoCategory);
         $form->handleRequest($request);
 
-        $todoCategory->setCreatedAt(new \DateTime());
+        $todoCategory->setCreatedAt(new DateTime());
+        /** @noinspection PhpParamsInspection */
         $todoCategory->setUser($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,6 +60,8 @@ class TodoCategoryController extends AbstractController
 
     /**
      * @Route("/{id}", name="todo_category_show", methods={"GET"})
+     * @param TodoCategory $todoCategory
+     * @return Response
      */
     public function show(TodoCategory $todoCategory): Response
     {
@@ -64,12 +72,15 @@ class TodoCategoryController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="todo_category_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param TodoCategory $todoCategory
+     * @return Response
      */
     public function edit(Request $request, TodoCategory $todoCategory): Response
     {
         $form = $this->createForm(TodoCategoryType::class, $todoCategory);
         $form->handleRequest($request);
-        $todoCategory->setEditedAt(new \DateTime());
+        $todoCategory->setEditedAt(new DateTime());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -85,6 +96,9 @@ class TodoCategoryController extends AbstractController
 
     /**
      * @Route("/{id}", name="todo_category_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param TodoCategory $todoCategory
+     * @return Response
      */
     public function delete(Request $request, TodoCategory $todoCategory): Response
     {

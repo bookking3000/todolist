@@ -74,7 +74,7 @@ class TodoType extends AbstractType
                     },
                 'attr' => array('class' => 'form-control'),
                 'label' => 'Kategorien',
-            ]);;
+            ]);
 
     }
 

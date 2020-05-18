@@ -20,9 +20,10 @@ class TodoRepository extends ServiceEntityRepository
         parent::__construct($registry, Todo::class);
     }
 
-   /**
-    * @return Todo[] Returns an array of owned Todo objects
-    */
+    /**
+     * @param $value
+     * @return Todo[] Returns an array of owned Todo objects
+     */
     public function findByOwner($value)
     {
         return $this->createQueryBuilder('t')
@@ -36,6 +37,7 @@ class TodoRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $value
      * @return Todo[] Returns an array of owned Todo objects which are archived
      */
     public function findArchivedByOwner($value)
@@ -51,6 +53,7 @@ class TodoRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $value
      * @return Todo[] Returns an array of owned Todo objects
      */
     public function findByContributor($value)

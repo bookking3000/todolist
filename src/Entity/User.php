@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -131,24 +132,24 @@ class User implements UserInterface, EquatableInterface
         return $this;
     }
 
-    public function getRegistrationDate(): ?\DateTimeInterface
+    public function getRegistrationDate(): ?DateTimeInterface
     {
         return $this->RegistrationDate;
     }
 
-    public function setRegistrationDate(\DateTimeInterface $RegistrationDate): self
+    public function setRegistrationDate(DateTimeInterface $RegistrationDate): self
     {
         $this->RegistrationDate = $RegistrationDate;
 
         return $this;
     }
 
-    public function getLastLoginTime(): ?\DateTimeInterface
+    public function getLastLoginTime(): ?DateTimeInterface
     {
         return $this->LastLoginTime;
     }
 
-    public function setLastLoginTime(?\DateTimeInterface $LastLoginTime): self
+    public function setLastLoginTime(?DateTimeInterface $LastLoginTime): self
     {
         $this->LastLoginTime = $LastLoginTime;
 
@@ -304,12 +305,19 @@ class User implements UserInterface, EquatableInterface
         return array_unique($this->roles);
     }
 
+    /**
+     * @param string $role
+     */
     public function addRole($role)
     {
         $this->roles[] = $role;
     }
 
 
+    /**
+     * @param UserInterface|User $user
+     * @return bool
+     */
     public function isEqualTo(UserInterface $user)
     {
         if ($this->getId() == $user->getId())
@@ -323,6 +331,10 @@ class User implements UserInterface, EquatableInterface
         }
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;

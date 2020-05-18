@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -106,24 +107,24 @@ class Todo
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?DateTimeInterface
     {
         return $this->CreationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $CreationDate): self
+    public function setCreationDate(DateTimeInterface $CreationDate): self
     {
         $this->CreationDate = $CreationDate;
 
         return $this;
     }
 
-    public function getDueDate(): ?\DateTimeInterface
+    public function getDueDate(): ?DateTimeInterface
     {
         return $this->DueDate;
     }
 
-    public function setDueDate(?\DateTimeInterface $DueDate): self
+    public function setDueDate(?DateTimeInterface $DueDate): self
     {
         $this->DueDate = $DueDate;
 
@@ -168,12 +169,12 @@ class Todo
         return $this;
     }
 
-    public function getCompletionDate(): ?\DateTimeInterface
+    public function getCompletionDate(): ?DateTimeInterface
     {
         return $this->CompletionDate;
     }
 
-    public function setCompletionDate(?\DateTimeInterface $CompletionDate): self
+    public function setCompletionDate(?DateTimeInterface $CompletionDate): self
     {
         $this->CompletionDate = $CompletionDate;
 

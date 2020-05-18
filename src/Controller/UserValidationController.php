@@ -5,12 +5,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Swift_Mailer;
+use Swift_Message;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;
 
-class UserValidationController extends \Symfony\Bundle\FrameworkBundle\Controller\AbstractController
+class UserValidationController extends AbstractController
 {
 
     /**
@@ -75,7 +77,7 @@ class UserValidationController extends \Symfony\Bundle\FrameworkBundle\Controlle
      */
     public function sendRegistrationMail(Swift_Mailer $mailer, $user)
     {
-        $message = (new \Swift_Message('Registrierung auf TodoList'))
+        $message = (new Swift_Message('Registrierung auf TodoList'))
             ->setFrom('todolist@localhost')
             ->setTo($user->getEmail())
             ->setBody(
