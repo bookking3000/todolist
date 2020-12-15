@@ -4,6 +4,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
+        "symfony/http-kernel": "5.1.5"
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
